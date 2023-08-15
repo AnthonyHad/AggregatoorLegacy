@@ -1,12 +1,17 @@
 import Parser from 'rss-parser';
 import NewsCard from './components/NewsCard';
+// import fs from 'fs';
 
-const parser = new Parser();
+const parser = new Parser({
+  customFields: {
+    feed: ['author'],
+  },
+});
 
 const fetchNews = async () => {
   const feed = await parser.parseURL('https://blockworks.co/feed/');
-
-  return feed.items;
+  // fs.writeFileSync('output.json', JSON.stringify(feed, null, 2));
+  return feed;
 };
 
 export default async function News() {
@@ -15,8 +20,12 @@ export default async function News() {
     <>
       <h1>News Page</h1>
       <div>
-        {feed.map((item) => (
-          <NewsCard key={item.isoDate} article={item} />
+        {feed.items.map((item) => (
+          <NewsCard
+            key={item.isoDate}
+            article={item}
+            source={feed.author.name[0]}
+          />
         ))}
       </div>
     </>

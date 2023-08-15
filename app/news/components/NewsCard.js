@@ -7,12 +7,12 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-export default function NewsCard({ article }) {
+export default function NewsCard({ article, source }) {
   return (
     <Card className="bg-slate-700">
       <CardHeader>
         <CardTitle>{article.title}</CardTitle>
-        <CardDescription>{article.author}</CardDescription>
+        <CardDescription>{source}</CardDescription>
       </CardHeader>
     </Card>
   );
