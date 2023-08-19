@@ -1,18 +1,5 @@
-import Parser from 'rss-parser';
 import NewsCard from './components/NewsCard';
-// import fs from 'fs';
-
-const parser = new Parser({
-  customFields: {
-    feed: ['author'],
-  },
-});
-
-const fetchNews = async () => {
-  const feed = await parser.parseURL('https://blockworks.co/feed/');
-  // fs.writeFileSync('output.json', JSON.stringify(feed, null, 2));
-  return feed;
-};
+import { fetchNews } from '@/services/newsService';
 
 export default async function News() {
   const feed = await fetchNews();
