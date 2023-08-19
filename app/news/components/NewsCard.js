@@ -7,17 +7,22 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-import Link from 'next/link';
-
-export default function NewsCard({ article, source }) {
+export default function NewsCard({
+  title,
+  link,
+  pubDate,
+  contentSnippet,
+  source,
+}) {
   return (
-    <Link href={`/news/${encodeURIComponent(article.isoDate)}`}>
-      <Card className="bg-slate-700">
-        <CardHeader>
-          <CardTitle>{article.title}</CardTitle>
-          <CardDescription>{source}</CardDescription>
-        </CardHeader>
-      </Card>
-    </Link>
+    <Card className="bg-slate-700">
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{contentSnippet}</CardDescription>
+        <CardFooter>
+          {source} | {pubDate}
+        </CardFooter>
+      </CardHeader>
+    </Card>
   );
 }
