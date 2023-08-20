@@ -1,22 +1,28 @@
 import NewsCard from './components/NewsCard';
-import { fetchNews } from '@/services/newsService';
+import { fetchNewsFromFeeds } from '@/services/newsService.mjs';
 
 export default async function News() {
-  const feed = await fetchNews();
+  const feeds = await fetchNewsFromFeeds();
   return (
     <>
       <h1>News Page</h1>
+
       <div>
-        {feed.items.map((item) => (
-          <NewsCard
-            key={item.isoDate}
-            article={item}
-            source={feed.author.name[0]}
-          />
+        {feeds.map((feed, index) => (
+          <div key={index}>
+            {feed.map((item) => (
+              <NewsCard
+                key={item.id}
+                title={item.title}
+                link={item.link}
+                pubDate={item.pubDate}
+                contentSnippet={item.contentSnippet}
+                source={item.source}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </>
   );
 }
-
-//
