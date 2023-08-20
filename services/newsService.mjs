@@ -32,21 +32,24 @@ export const fetchNewsFromFeeds = async () => {
     })
   );
 
-  return feeds;
+  const allArticles = feeds.flat();
+  const sortedArticles = allArticles.sort((a, b) => b.pubDate - a.pubDate);
 
-  // return fs.writeFileSync(
-  //   'normalizedOutput.json',
-  //   JSON.stringify(feeds, null, 2)
-  // );
+  // return sortedArticles;
+
+  return fs.writeFileSync(
+    'normalizedOutput.json',
+    JSON.stringify(sortedArticles, null, 2)
+  );
 };
 
-// async function main() {
-//   try {
-//     await fetchNewsFromFeeds();
-//     console.log('Data written to output.json');
-//   } catch (error) {
-//     console.error('An error occurred:', error);
-//   }
-// }
+async function main() {
+  try {
+    await fetchNewsFromFeeds();
+    console.log('Data written to output.json');
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
+}
 
-// main();
+main();
