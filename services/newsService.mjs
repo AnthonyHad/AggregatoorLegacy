@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import fs from 'fs';
+// import fs from 'fs';
 
 const parser = new Parser();
 
@@ -35,21 +35,21 @@ export const fetchNewsFromFeeds = async () => {
   const allArticles = feeds.flat();
   const sortedArticles = allArticles.sort((a, b) => b.pubDate - a.pubDate);
 
-  // return sortedArticles;
+  return sortedArticles;
 
-  return fs.writeFileSync(
-    'normalizedOutput.json',
-    JSON.stringify(sortedArticles, null, 2)
-  );
+  // return fs.writeFileSync(
+  //   'normalizedOutput.json',
+  //   JSON.stringify(sortedArticles, null, 2)
+  // );
 };
 
-async function main() {
-  try {
-    await fetchNewsFromFeeds();
-    console.log('Data written to output.json');
-  } catch (error) {
-    console.error('An error occurred:', error);
-  }
-}
+// async function main() {
+//   try {
+//     await fetchNewsFromFeeds();
+//     console.log('Data written to output.json');
+//   } catch (error) {
+//     console.error('An error occurred:', error);
+//   }
+// }
 
-main();
+// main();
