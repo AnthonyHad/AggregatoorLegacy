@@ -24,6 +24,10 @@ export const fetchNewsFromFeeds = async () => {
           source: feed.title,
         };
 
+        if (item.hasOwnProperty('summary')) {
+          normalizedItem.contentSnippet = item.summary;
+        }
+
         return normalizedItem;
       });
 
