@@ -1,11 +1,7 @@
 import Parser from 'rss-parser';
 import fs from 'fs';
 
-const parser = new Parser({
-  customFields: {
-    feed: ['author'],
-  },
-});
+const parser = new Parser();
 
 const feedUrls = ['https://blockworks.co/feed', 'https://decrypt.co/feed'];
 
@@ -19,7 +15,7 @@ export const fetchNewsFromFeeds = async () => {
           id: item.id || item.guid || null,
           title: item.title,
           link: item.link,
-          pubDate: item.pubDate,
+          pubDate: new Date(item.pubDate).getTime(),
           contentSnippet: item.contentSnippet,
           source: feed.title,
         };

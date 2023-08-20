@@ -22,7 +22,7 @@ export default function NewsCard({
           <CardTitle>{title}</CardTitle>
           <CardDescription>{contentSnippet}</CardDescription>
           <CardFooter>
-            {source} | {pubDate}
+            {source} | {new Date(pubDate).toLocaleTimeString()}
           </CardFooter>
         </CardHeader>
       </Card>
