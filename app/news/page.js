@@ -8,19 +8,15 @@ export default async function News() {
       <h1>News Page</h1>
 
       <div>
-        {feeds.map((feed, index) => (
-          <div key={index}>
-            {feed.map((item) => (
-              <NewsCard
-                key={item.id}
-                title={item.title}
-                link={item.link}
-                pubDate={item.pubDate}
-                contentSnippet={item.contentSnippet}
-                source={item.source}
-              />
-            ))}
-          </div>
+        {feeds.map((item) => (
+          <NewsCard
+            key={item.id}
+            title={item.title}
+            link={item.link}
+            pubDate={item.pubDate}
+            contentSnippet={item.contentSnippet}
+            source={item.source}
+          />
         ))}
       </div>
     </>

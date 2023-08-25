@@ -1,5 +1,5 @@
 import Parser from 'rss-parser';
-import fs from 'fs';
+// import fs from 'fs';
 
 const parser = new Parser();
 
@@ -32,11 +32,14 @@ export const fetchNewsFromFeeds = async () => {
     })
   );
 
-  return feeds;
+  const allArticles = feeds.flat();
+  const sortedArticles = allArticles.sort((a, b) => b.pubDate - a.pubDate);
+
+  return sortedArticles;
 
   // return fs.writeFileSync(
   //   'normalizedOutput.json',
-  //   JSON.stringify(feeds, null, 2)
+  //   JSON.stringify(sortedArticles, null, 2)
   // );
 };
 
