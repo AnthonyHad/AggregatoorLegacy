@@ -19,18 +19,17 @@ export default function NewsCard({
   const timeDifference = currentTime - pubDate;
   const minsAgo = Math.floor(timeDifference / (1000 * 60));
   const hoursAgo = Math.floor(minsAgo / 60);
+  const daysAgo = Math.floor(hoursAgo / 24);
 
   let timeAgoText = '';
-  if (hoursAgo === 0) {
-    if (minsAgo <= 1) {
-      timeAgoText = 'Just now';
-    } else {
-      timeAgoText = `${minsAgo} minutes ago`;
-    }
-  } else if (hoursAgo === 1) {
-    timeAgoText = '1 hour ago';
+  if (daysAgo > 0) {
+    timeAgoText = `${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago`;
+  } else if (hoursAgo > 0) {
+    timeAgoText = `${hoursAgo} ${hoursAgo === 1 ? 'hour' : 'hours'} ago`;
+  } else if (minsAgo > 0) {
+    timeAgoText = `${minsAgo} ${minsAgo === 1 ? 'minute' : 'minutes'} ago`;
   } else {
-    timeAgoText = `${hoursAgo} hours ago`;
+    timeAgoText = 'Just now';
   }
 
   return (
